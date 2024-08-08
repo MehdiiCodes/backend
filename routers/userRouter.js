@@ -2,8 +2,12 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/add', (req, res) => {
+router.post('/add', (req, res) => {
+
+    console.log();
+    
     res.send('Response from user add');
+
 });
 
 //getall
@@ -14,8 +18,10 @@ router.get('/add', (req, res) => {
 router.get('/getall', (req, res) => {
     res.send('Response from user getall');
 });
-router.get('/getbyid', (req, res) => {
+router.get('/getbyid/:id', (req, res) => {
     res.send('Response from user getbyid');
+    console.log(req.params.id);
+    
 });
 router.get('/update', (req, res) => {
     res.send('Response from user update');
