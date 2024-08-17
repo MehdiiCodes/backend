@@ -60,15 +60,31 @@ router.get('/getbycity/:city', (req, res) => {
 
 
 router.get('/getbyid/:id', (req, res) => {
-    res.send('Response from user getbyid');
-    console.log(req.params.id);
-
+   Model.findById(req.params.id)
+    .then((result) => {
+        res.status(200).json(result);
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
+
+
+
 router.get('/update', (req, res) => {
     res.send('Response from user update');
 });
-router.get('/delete', (req, res) => {
-    res.send('Response from user delete');
+
+
+
+router.delete('/delete/:id', (req, res) => {
+   Model.findByIdAndDelete(req.params.id)
+   .then((result) => {
+    res.status(200).json(result);
+   }).catch((err) => {
+    console.log(err);
+        res.status(500).json(err);
+   });
 });
 
 module.exports = router;
